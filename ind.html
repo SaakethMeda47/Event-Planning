@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Event Planning Service</title>
+<style>
+    /* Background Video Styling */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0; /* Hide overflow to prevent video from causing scrollbars */
+        position: relative;
+    }
+
+    video#bgVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1; /* Place the video behind other content */
+    }
+
+    /* Page Content Styling */
+    header {
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    main {
+        padding: 2rem;
+    }
+
+    .eventTypes {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .eventType {
+        width: 30%;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: black; /* Black with 60% opacity */
+        color: white; /* Text color */
+        cursor: pointer; /* Change cursor to pointer on hover */
+    }
+
+    .eventType img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    form {
+        background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
+        padding: 1.5rem;
+        border-radius: 10px;
+        color: #fff; /* Form text color */
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form select {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    form button {
+        padding: 0.5rem 1rem;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #pastEventsAndForm {
+        background-color: rgba(0, 0, 0, 0.4); /* Transparent black background */
+        padding: 2rem;
+        border-radius: 10px;
+        margin-top: 2rem;
+    }
+</style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop id="bgVideo">
+    <source src="https://videos.pexels.com/video-files/6929265/6929265-hd_1920_1080_30fps.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<header>
+    <h1>Event Planning Service</h1>
+</header>
+
+<main>
+    <section id="eventListing">
+        <h2 style="color: #fff;">Event Types</h2>
+        <div class="eventTypes">
+            <!-- Event Listing will be dynamically generated here -->
+        </div>
+    </section>
+
+    <div id="pastEventsAndForm" style="color: #fff;">
+        <section id="pastEvents">
+            <h2>Past Events</h2>
+            <div id="pastEventImages">
+                <!-- Past event images will be dynamically generated here -->
+            </div>
+        </section>
+
+        <section id="contactForm" style="color: #fff;">
+            <h2>Contact Us</h2>
+            <form id="quoteForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required><br>
+
+                <label for="eventType">Event Type:</label>
+                <select id="eventType" name="eventType" required>
+                    <option value="">Select Event Type</option>
+                    <option value="weddings">Weddings</option>
+                    <option value="conferences">Conferences</option>
+                    <option value="parties">Parties</option>
+                </select><br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Filter Section for Checkbox and Radio Button Filtering -->
+    <section id="filterSection" class="filterSection" style="color: #fff;">
+        <h2>Filter Events</h2>
+        <div id="checkboxFilter">
+            <h3>Desired Services:</h3>
+            <label><input type="checkbox" name="services" value="catering"> Catering</label>
+            <label><input type="checkbox" name="services" value="photography"> Photography</label>
+            <label><input type="checkbox" name="services" value="entertainment"> Entertainment</label>
+        </div>
+        <div id="radioFilter">
+            <h3>Budget Range:</h3>
+            <label><input type="radio" name="budget" value="Rs15000 - Rs20000"> Rs15000 - Rs20000</label>
+            <label><input type="radio" name="budget" value="Rs25000 - Rs35000">Rs25000-Rs35000</label>
+            <label><input type="radio" name="budget" value="above50000"> Above Rs50000</label>
+        </div>
+    </section>
+</main>
+
+<script>
+    // JavaScript Functionality
+    document.addEventListener("DOMContentLoaded", function() {
+        const eventTypes = [
+            {
+                type: "Weddings",
+                description: "Beautiful weddings tailored to your dreams.",
+                image: "https://t4.ftcdn.net/jpg/00/41/18/63/240_F_41186371_hH1bEJH3qYYDspcxLrguJgiFcXC7L7ss.jpg",
+                price: "Rs15000",
+                url: "weddings.html" // New HTML file for weddings
+            },
+            {
+                type: "Conferences",
+                description: "Professional conferences for your business needs.",
+                image: "conp.jpg",
+                price: "Rs18000",
+                url: "conferences.html" // New HTML file for conferences
+            },
+            {
+                type: "Parties",
+                description: "Unforgettable parties to celebrate special occasions.",
+                image: "parp.jpg",
+                price: "Rs30000",
+                url: "parties.html" // New HTML file for parties
+            }
+        ];
+
+        const eventTypeContainer = document.querySelector(".eventTypes");
+        const pastEventImagesContainer = document.getElementById("pastEventImages");
+        const filterSection = document.getElementById("filterSection");
+
+        // Function to display event types
+        function displayEventTypes() {
+            eventTypeContainer.innerHTML = "";
+            eventTypes.forEach(event => {
+                const eventDiv = document.createElement("div");
+                eventDiv.classList.add("eventType");
+                eventDiv.innerHTML = `
+                    <h3>${event.type}</h3>
+                    <img src="${event.image}" alt="${event.type}">
+                    <p>${event.description}</p>
+                    <p>Price: ${event.price}</p>
+                `;
+                eventDiv.addEventListener("click", function() {
+                    window.location.href = event.url; // Navigate to the specified URL on click
+                });
+                eventTypeContainer.appendChild(eventDiv);
+            });
+        }
+
+        // Initialize the page
+        displayEventTypes();
+    });
+</script>
+
+</body>
+</html>

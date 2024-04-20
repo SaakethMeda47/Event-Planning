@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Parties - Event Planning Service</title>
+<style>
+    /* CSS Styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000; /* Set black background color */
+        overflow-x: hidden; /* Hide horizontal overflow */
+        color: #fff; /* Default text color */
+    }
+
+    header {
+        text-align: center;
+        color: rgb(255, 128, 0);
+        padding: 1rem 0;
+    }
+
+    main {
+        padding: 2rem;
+    }
+
+    .eventDetails {
+        background-color: rgba(0, 0, 0, 0.21); /* Semi-transparent black background */
+        padding: 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2rem;
+    }
+
+    .eventDetails h2, .eventDetails h3, .eventDetails p {
+        color: white; /* Text color within event details */
+    }
+
+    .eventDetails img {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+    }
+
+    /* Form Styles */
+    form {
+        background-color: rgba(0, 0, 0, 0.305); /* Semi-transparent black background for form */
+        padding: 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.059);
+        margin-top: 2rem;
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #fff; /* Form label text color */
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form select {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    form button {
+        padding: 0.5rem 1rem;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    video#bgVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1; /* Place the video behind other content */
+    }
+</style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop id="bgVideo">
+   <source src="wed.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video>
+
+<header>
+    <h1>Weddings</h1>
+</header>
+
+<main>
+    <div class="eventDetails">
+        <h3>Past Events</h3>
+        <div class="pastEventImages" style="display: flex;">
+            <img src="https://www.ibfw.com/vendorimages/390481885318243259.jpg" alt="Past Party 1" style="width: 430px; height: 370px; margin-left: 20px; margin-right: 20px;">
+            <img src="wimg2.jpg" alt="Past Party 2" style="width: 430px; height: 370px; margin-left: 20px; margin-right: 20px;">
+            <img src="wimg3.jpg" alt="Past Party 3" style="width: 430px; height: 370px; margin-left: 20px; margin-right: 20px;">
+        </div>
+    </div>
+
+    <!-- Event Filters Form -->
+    <form id="eventFiltersForm">
+        <h3>Event Filters</h3>
+        <label for="priceRange">Select Price Range:</label>
+        <select id="priceRange" name="priceRange">
+            <option value="15000-20000">Rs15000 - Rs20000</option>
+            <option value="25000-35000">Rs25000 - Rs35000</option>
+            <option value="50000">Above Rs50000</option>
+        </select>
+
+        <fieldset>
+            <legend>Select Food/Beverages:</legend>
+            <label><input type="radio" name="foodBeverages" value="included"> Included</label>
+            <label><input type="radio" name="foodBeverages" value="additional"> Additional Cost</label>
+            <label><input type="radio" name="foodBeverages" value="notIncluded"> Not Included</label>
+        </fieldset>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+</main>
+
+<script>
+    // JavaScript for displaying filter details and congratulations message
+    document.getElementById('eventFiltersForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get selected filter values
+        var priceRange = document.getElementById('priceRange').value;
+        var foodBeverages = document.querySelector('input[name="foodBeverages"]:checked').value;
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+
+        // Display filter details and congratulations message
+        var filterDetails = "Selected Price Range: " + priceRange + "\n";
+        filterDetails += "Selected Food/Beverages: " + foodBeverages + "\n";
+        filterDetails += "Name: " + name + "\n";
+        filterDetails += "Email: " + email + "\n";
+        filterDetails += "Phone: " + phone;
+
+        alert("Congratulations!\n\n" + filterDetails);
+    });
+</script>
+
+</body>
+</html>

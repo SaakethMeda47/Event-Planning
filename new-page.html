@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submitted Form Data</title>
+</head>
+<body>
+
+<h1>Submitted Form Data</h1>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Retrieve query parameters from URL
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        // Display form data
+        const formDataContainer = document.createElement("div");
+        formDataContainer.innerHTML = `
+            <p><strong>Name:</strong> ${urlParams.get("name")}</p>
+            <p><strong>Email:</strong> ${urlParams.get("email")}</p>
+            <p><strong>Phone:</strong> ${urlParams.get("phone")}</p>
+            <p><strong>Event Type:</strong> ${urlParams.get("eventType")}</p>
+        `;
+        document.body.appendChild(formDataContainer);
+    });
+</script>
+
+</body>
+</html>
